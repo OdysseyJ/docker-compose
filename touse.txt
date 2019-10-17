@@ -1,0 +1,36 @@
+docker 구동
+
+touch Dockerfile
+-> Docker file 만들기
+
+.dockerignore 만들기
+-> node_modules
+-> npm-debug.log 추가
+
+
+docker build -t express_server .
+-> 이미지 만들기
+
+docker images
+-> 이미지 확인
+
+docker run --name express_server_container -p 8085:8080 -d express_server
+-> 컨테이너 만들기 이름 : express_server_container
+-> port = docker의 8080포트를 기기의 8085와 이음.
+-> express_server 이미지 사용
+
+docker ps (-a)
+-> 현재 실행중인 컨테이너 목록 (전체)
+
+docker start express_server_container
+-> 컨테이너 실행
+
+docer stop express_server_container
+-> 컨테이너 종료
+
+exit 상태의 모든 컨테이너 삭제
+docker rm $(docker ps --filter 'status=exited' -a -q)
+
+모든 이미지 삭제
+docker rmi $(docker images -q)
+
